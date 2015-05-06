@@ -56,6 +56,29 @@ describe(Actor) do
        actor.update({:name => "Brad Pitt"})
        expect(actor.name()).to(eq("Brad Pitt"))
      end
+
+
+     it('lets you add a movie to an actor') do
+      movie = Movie.new({:name => "Oceans Twelve", :id => nil})
+      movie.save()
+      actor = Actor.new({:name => "George Clooney", :id => nil})
+      actor.save()
+      actor.update({:movie_ids => [movie.id]})
+      expect(actor.movies()).to(eq([movie]))
+    end
+  end
+
+  describe('#movies') do
+    it('returns all the movies a particular actor hasbeen in') do
+       movie = Movie.new({:name => "Oceans Eleven", :id => nil})
+       movie.save()
+       movie2 = Movie.new({:name => "Oceans Twelve", :id => nil})
+       movie2.save()
+       actor = Actor.new({:name => "George Clooney", :id => nil})
+       actor.save()
+       actor.update({:movie_ids => [movie.id(), movie2.id()]})
+       expect(actor.movies()).to(eq([movie, movie2]))
+     end
    end
 
    describe('#delete') do

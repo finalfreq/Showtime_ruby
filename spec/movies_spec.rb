@@ -53,6 +53,16 @@ describe(Movie) do
       test_movie.update({:name =>'Scarface'})
       expect(test_movie.name()).to(eq('Scarface'))
     end
+
+    it('lets you add an actor to a movie') do
+      test_movie = Movie.new({ :name => 'Rush Hour', :id => nil})
+      test_movie.save()
+      jackie = Actor.new(name: "Jackie Chan", id: nil)
+      jackie.save()
+      chris = Actor.new(name: "Chris Tucker", id: nil)
+      chris.save()
+      test_movie.update({:actor_ids => [jackie.id(), chris.id()]})
+    end
   end
 
   describe('#delete') do
