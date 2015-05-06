@@ -62,6 +62,20 @@ describe(Movie) do
       chris = Actor.new(name: "Chris Tucker", id: nil)
       chris.save()
       test_movie.update({:actor_ids => [jackie.id(), chris.id()]})
+      expect(test_movie.actors()).to(eq([jackie, chris]))
+    end
+  end
+
+  describe("#actors") do
+    it("returns all the actors in a particular movie") do
+      test_movie = Movie.new({ :name => 'Rush Hour', :id => nil})
+      test_movie.save()
+      jackie = Actor.new(name: "Jackie Chan", id: nil)
+      jackie.save()
+      chris = Actor.new(name: "Chris Tucker", id: nil)
+      chris.save()
+      test_movie.update({:actor_ids => [jackie.id(), chris.id()]})
+      expect(test_movie.actors()).to(eq([jackie, chris]))
     end
   end
 
