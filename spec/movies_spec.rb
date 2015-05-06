@@ -37,7 +37,15 @@ describe(Movie) do
     end
   end
 
-
+  describe('.find') do
+    it("returns an movie by its id") do
+      test_movie = Movie.new({ :name => 'Rush Hour', :id => nil})
+      test_movie.save()
+      test_movie1 = Movie.new({ :name => 'Rush Hour', :id => nil})
+      test_movie1.save()
+      expect(Movie.find(test_movie1.id())).to(eq(test_movie1))
+    end
+  end
 
 
 
