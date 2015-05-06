@@ -23,4 +23,19 @@ describe(Actor) do
     end
   end
 
+  describe('#save') do
+    it('saves an actor to list of actors') do
+      test_actor = Actor.new(:name => "Brad Pitt", :id => nil)
+      test_actor.save()
+      expect(Actor.all()).to(eq([test_actor]))
+    end
+  end
+  describe('#==') do
+    it('ascribes equal to two objects are equal to each others') do
+      test_actor = Actor.new({:name => "brad Pitt", :id => nil})
+      test_actor2 = Actor.new({:name => "brad Pitt", :id => nil})
+      expect(test_actor).to(eq(test_actor2))
+     end
+   end
+
 end
