@@ -30,6 +30,7 @@ describe(Actor) do
       expect(Actor.all()).to(eq([test_actor]))
     end
   end
+
   describe('#==') do
     it('ascribes equal to two objects are equal to each others') do
       test_actor = Actor.new({:name => "brad Pitt", :id => nil})
@@ -37,5 +38,36 @@ describe(Actor) do
       expect(test_actor).to(eq(test_actor2))
      end
    end
+
+   describe('.find') do
+     it("returns an actor by its id") do
+       test_actor = Actor.new({:name => "brad Pitt", :id => nil})
+       test_actor.save()
+       test_actor2 = Actor.new({:name => "brad Pitt", :id => nil})
+       test_actor2.save()
+       expect(Actor.find(test_actor2.id())).to(eq(test_actor2))
+     end
+   end
+
+   describe('#update') do
+     it('lets you update actors in the database') do
+       actor = Actor.new({:name => "George Clooney", :id => nil})
+       actor.save()
+       actor.update({:name => "Brad Pitt"})
+       expect(actor.name()).to(eq("Brad Pitt"))
+     end
+   end
+
+   describe('#delete') do
+     it("lets you delete an actor from the database") do
+      test_actor = Actor.new({:name => "brad Pitt", :id => nil})
+      test_actor.save()
+      test_actor2 = Actor.new({:name => "brad Pitt", :id => nil})
+      test_actor2.save()
+      test_actor.delete()
+      expect(Actor.all()).to(eq([test_actor2]))
+    end
+  end
+
 
 end
