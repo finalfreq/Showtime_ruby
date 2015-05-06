@@ -24,7 +24,7 @@ class Movie
   end
 
   define_method(:==) do |another_movie|
-  self.name().==(another_movie.name()).&(self.id().==(another_movie.id()))
+    self.name().==(another_movie.name()).&(self.id().==(another_movie.id()))
   end
 
   define_singleton_method(:find) do |id|
@@ -32,5 +32,17 @@ class Movie
     name = result.first().fetch("name")
     Movie.new({:name => name, :id => id})
   end
+
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name, name)
+    @id = self.id
+    DB.exec("UPDATE movies SET name = '#{@name}' WHERE id = #{@id};")
+  end
+
+
+
+
+
+
 
 end
