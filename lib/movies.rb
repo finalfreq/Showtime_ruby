@@ -38,8 +38,9 @@ class Movie
     @id = self.id
     DB.exec("UPDATE movies SET name = '#{@name}' WHERE id = #{@id};")
   end
-
-
+  define_method(:delete) do
+    DB.exec("DELETE FROM movies WHERE id = #{self.id}")
+  end
 
 
 

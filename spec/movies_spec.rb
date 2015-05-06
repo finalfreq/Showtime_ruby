@@ -55,7 +55,16 @@ describe(Movie) do
     end
   end
 
-
+  describe('#delete') do
+    it('removes specific movie from database') do
+      test_movie = Movie.new({ :name => 'Rush Hour', :id => nil})
+      test_movie.save()
+      test_movie1 = Movie.new({ :name => 'Rush Hour', :id => nil})
+      test_movie1.save()
+      test_movie.delete()
+      expect(Movie.all()).to(eq([test_movie1]))
+    end
+  end
 
 
 
