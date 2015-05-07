@@ -1,0 +1,28 @@
+<h1 class="page-header text-center">The Movie and Actor database!</h1>
+
+
+<p> Current actors that we have listed :</p>
+
+<% if @actors.any?() %>
+  <ul>
+    <% @actors.each() do |actor| %>
+    <li><%= actor.name %></li>
+  </ul>
+  <% end %>
+
+<% else %>
+  <h5>There are no actors added please <a href="/actors"> Add an actor </a></h5>
+<% end %>
+
+<p> Current movies that we have listed:</p>
+
+<% if @movies.any?() %>
+  <ul>
+    <% @movies.each() do |movie| %>
+    <li><%= movie.name() %></li>
+  </ul>
+  <% end %>
+
+<% else %>
+  <h5>There are no actors added, please <a href ="/movies"> Add a movie </a></h5>
+<% end %>

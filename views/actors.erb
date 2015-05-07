@@ -1,0 +1,29 @@
+<h1 class="page-header text-center">Welcome to the Actors page!</h1>
+
+
+<p>
+  <form action="/actors" method="post">
+    <div class="form-group">
+      <label for="actor">Add an Actor</label>
+      <input type="text" name="actor" class="form-control" required>
+    </div>
+    <button name="add_actor">Add</button>
+  </form>
+</p>
+
+
+<h4>Here are our current actors:</h4>
+
+<% if @actors.any?() %>
+<p>Click on an actor to see information about them: </p>
+    <ul>
+      <% @actors.each() do |actor| %>
+      <li><a href="/actors/<%=actor.id%>"> <%= actor.name() %> </a></li>
+      <% end %>
+    </ul>
+
+<% else %>
+
+  <h4>Currently there are no actors, add an actor above!</h4>
+
+<% end %>
