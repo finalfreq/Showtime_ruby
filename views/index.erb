@@ -6,9 +6,10 @@
 <% if @actors.any?() %>
   <ul>
     <% @actors.each() do |actor| %>
-    <li><%= actor.name %></li>
+    <li><a href="/actors/<%= actor.id %>"><%= actor.name %></a></li>
+    <% end %>
+
   </ul>
-  <% end %>
 
 <% else %>
   <h5>There are no actors added please <a href="/actors"> Add an actor </a></h5>
@@ -19,9 +20,9 @@
 <% if @movies.any?() %>
   <ul>
     <% @movies.each() do |movie| %>
-    <li><%= movie.name() %></li>
+    <li><a href="/movies/<%= movie.id %>"><%= movie.name() %></a></li>
+    <% end %>
   </ul>
-  <% end %>
 
 <% else %>
   <h5>There are no actors added, please <a href ="/movies"> Add a movie </a></h5>
